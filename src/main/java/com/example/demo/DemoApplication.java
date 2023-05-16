@@ -19,8 +19,4 @@ public class DemoApplication extends SpringBootServletInitializer {
 		return "Hello aaa!";
 	}
 
-	@RequestMapping("/test")
-    public String home() {
-        return "home";
-    }
 }
