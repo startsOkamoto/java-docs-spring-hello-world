@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SampleJasperTemplate" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1af7a9c-e044-4c22-9d3b-be8fae38cd20">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="NO" class="java.lang.Integer"/>
+	<field name="SEND_VALUE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<staticText>
+				<reportElement x="90" y="21" width="351" height="41" uuid="ff0b72bb-6ad2-41be-a162-b4d7c4475435"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[TEST PDF FILE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="0" width="70" height="30" uuid="61f8c745-bf54-4525-8b48-945b43dd9bf3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-10" y="0" width="50" height="30" uuid="90638d11-3e6c-4704-9b39-4744f32047dc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="0" width="384" height="30" uuid="e3ae43ee-6f3a-4f8d-8b77-36122d27e6de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SEND_VALUE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="330" y="0" width="221" height="21" uuid="c49065c3-fa01-4b42-a10f-8505823aaeaa"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

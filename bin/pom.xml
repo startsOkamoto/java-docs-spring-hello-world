@@ -6,8 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.7</version>
-		<relativePath/>
-		 <!-- lookup parent from repository -->
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>java-docs-spring-hello-world</artifactId>
@@ -25,7 +24,6 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>		
 		</dependency>
-		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -36,40 +34,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-devtools</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--			<optional>true</optional>-->
-<!--		</dependency>-->
-		
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
-		<dependency>
-		    <groupId>net.sf.jasperreports</groupId>
-		    <artifactId>jasperreports</artifactId>
-		    <version>6.20.5</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi-ooxml</artifactId>
-		    <version>5.2.3</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -79,16 +43,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 

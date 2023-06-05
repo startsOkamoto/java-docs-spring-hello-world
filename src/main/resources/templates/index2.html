@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+ <html xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>システム</title>
+</head>
+<body>
+	<form action="#" th:object="${indexForm}" method="post">
+		<div>
+			<h1>ようこそ！</h1>
+			印刷文字を入力して下さい（PDFについては日本語未対応）：<input type="text" th:field="*{sendValue}" />
+			<input type="submit" value="PDF" name="PdfPrint" />
+			<input type="submit" value="EXCEL"  name="ExcelPrint"  />
+			<input type="submit" value="EXCEL(テンプレートから)"  name="ExcelPrintTemplate"  />
+		</div>
+	</form>
+</body>
+</html>
