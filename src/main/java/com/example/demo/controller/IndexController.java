@@ -76,7 +76,7 @@ public class IndexController {
 		}
 		JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(dataList);
 		// ファイル名
-		String fileName = "sample_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + ".pdf";
+		String fileName = "sample_" + CommonUtil.getLocalDateTimeJst("yyyyMMdd_HHmmssSSS") + ".pdf";
 		// HTTPヘッダに、ダウンロードファイル名を設定
 	    response.addHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 	    
@@ -107,7 +107,7 @@ public class IndexController {
 	public void printActExcel(IndexForm indexForm, HttpServletResponse response) throws IOException {
 
 		// ファイル名
-		String fileName = "sample_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + ".xlsx";
+		String fileName = "sample_" + CommonUtil.getLocalDateTimeJst("yyyyMMdd_HHmmssSSS") + ".xlsx";
 		//HTTPヘッダに、ダウンロードファイル名を設定
 	    response.addHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
 	    //Excelファイルの作成と、レスポンスストリームへの書き込み
@@ -151,7 +151,7 @@ public class IndexController {
 		String sourceFileName = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "excel/test_template.xlsx").getAbsolutePath();
 		
 		// ファイル名
-		String fileName = "sample_template_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + ".xlsx";
+		String fileName = "sample_template_" + CommonUtil.getLocalDateTimeJst("yyyyMMdd_HHmmssSSS") + ".xlsx";
 		
 		//HTTPヘッダに、ダウンロードファイル名を設定
 	    response.addHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
@@ -164,7 +164,7 @@ public class IndexController {
 		    // シートの生成
 		    Sheet sh = wb.getSheetAt(0);
 
-			sh.getRow(0).createCell(1).setCellValue(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+			sh.getRow(0).createCell(1).setCellValue(CommonUtil.getLocalDateTimeJst("yyyy-MM-dd HH:mm:ss.SSS"));
 			// セルに値を設定
 			int index = 1;
 		    for(int row = 3;row < 11;row++) {

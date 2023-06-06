@@ -3,6 +3,7 @@ package com.example.demo.common;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 import com.azure.storage.file.share.ShareDirectoryClient;
@@ -27,7 +28,7 @@ public class CommonUtil {
 		ShareDirectoryClient dirClient = new ShareFileClientBuilder()
 		         .connectionString(storageConnectionString)
 		         .shareName(shareName)
-		         .resourcePath("TEST_DIR_" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")))
+		         .resourcePath("TEST_DIR_" + getLocalDateTimeJst("yyyyMMdd"))
 		         .buildDirectoryClient();
 		
 		// ディレクトリの作成（なければ作成する）
@@ -40,5 +41,16 @@ public class CommonUtil {
         ShareFileUploadInfo info = fileClient.uploadRange(new ByteArrayInputStream(stream.toByteArray()), stream.toByteArray().length);
         
         System.out.println("ETAG:" + info.getETag());
+	}
+	
+	
+	/**
+	 * 
+	 * @param dateFormat
+	 * @return
+	 */
+	public static String getLocalDateTimeJst(String dateFormat) {
+		// JST時間
+		return LocalDateTime.now(ZoneId.of("JST", ZoneId.SHORT_IDS)).format(DateTimeFormatter.ofPattern(dateFormat));
 	}
 }
