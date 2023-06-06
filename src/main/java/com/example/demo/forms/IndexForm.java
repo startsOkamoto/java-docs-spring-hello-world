@@ -11,5 +11,13 @@ public class IndexForm {
 
 	@Getter
 	@Setter
-	private String message;
+	private String accountName;
+	
+	@Getter
+	@Setter
+	private String accountKey;
+	
+	@Getter
+	@Setter
+	private String shareName;
 }

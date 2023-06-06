@@ -9,6 +9,41 @@
 	<form action="#" th:object="${indexForm}" method="post">
 		<div>
 			<h1>ようこそ！</h1>
+		</div>
+		<div>
+			<h2>AzureFiles接続情報</h2>
+			
+			<table>
+				<tr>
+					<th>
+						AccountName：
+					</th>
+					<td>
+						<input type="text" th:field="*{accountName}" style="width: 40rem;" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						AccountKey：
+					</th>
+					<td>
+						<input type="text" th:field="*{accountKey}" style="width: 40rem;" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						ShareName：
+					</th>
+					<td>
+						<input type="text" th:field="*{shareName}" style="width: 40rem;"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<hr />
+		</div>
+		<div>
 			印刷文字を入力して下さい（PDFについては日本語未対応）：<input type="text" th:field="*{sendValue}" />
 			<input type="submit" value="PDF" name="PdfPrint" />
 			<input type="submit" value="EXCEL"  name="ExcelPrint"  />
