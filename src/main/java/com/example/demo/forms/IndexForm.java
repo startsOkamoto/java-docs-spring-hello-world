@@ -20,4 +20,12 @@ public class IndexForm {
 	@Getter
 	@Setter
 	private String shareName;
+	
+	@Getter
+	@Setter
+	private String folderName;
+	
+	@Getter
+	@Setter
+	private String fileName;
 }

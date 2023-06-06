@@ -8,7 +8,7 @@
 <body>
 	<form action="#" th:object="${indexForm}" method="post">
 		<div>
-			<h1>ようこそ！(20230606-04)</h1>
+			<h1>ようこそ！(20230606-05)</h1>
 		</div>
 		<div>
 			<h2>AzureFiles接続情報</h2>
@@ -44,10 +44,54 @@
 			<hr />
 		</div>
 		<div>
-			印刷文字を入力して下さい（PDFについては日本語未対応）：<input type="text" th:field="*{sendValue}" />
-			<input type="submit" value="PDF" name="PdfPrint" />
-			<input type="submit" value="EXCEL"  name="ExcelPrint"  />
-			<input type="submit" value="EXCEL(テンプレートから)"  name="ExcelPrintTemplate"  />
+			<h2>AzureFilesダウンロード</h2>
+			
+			<table>
+				<tr>
+					<th>
+						フォルダ：
+					</th>
+					<td>
+						<input type="text" th:field="*{folderName}"  style="width: 40rem;" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						ファイル：
+					</th>
+					<td>
+						<input type="text" th:field="*{fileName}"  style="width: 40rem;" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="download" name="DownloadFile" />
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<hr />
+		</div>
+		<div>
+			<h2>ファイル生成＆AzureFilesアップロード</h2>
+			<table>
+				<tr>
+					<th>
+						印刷文字(PDFについては日本語未対応)：
+					</th>
+					<td>
+						<input type="text" th:field="*{sendValue}" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="PDF" name="PdfPrint" />
+						<input type="submit" value="EXCEL"  name="ExcelPrint"  />
+						<input type="submit" value="EXCEL(テンプレートから)"  name="ExcelPrintTemplate"  />
+					</td>
+				</tr>
+			</table>
 		</div>
 	</form>
 </body>

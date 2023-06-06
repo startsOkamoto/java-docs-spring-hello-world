@@ -2,6 +2,7 @@ package com.example.demo.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -41,6 +42,20 @@ public class CommonUtil {
         ShareFileUploadInfo info = fileClient.uploadRange(new ByteArrayInputStream(stream.toByteArray()), stream.toByteArray().length);
         
         System.out.println("ETAG:" + info.getETag());
+	}
+	
+	
+	public static void azureFilesDownload(OutputStream stream, String dirName, String fileName, String accountName, String accountKey, String shareName) {
+		final String storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=" + accountName + ";AccountKey=" + accountKey;
+		
+		ShareDirectoryClient dirClient = new ShareFileClientBuilder()
+	             .connectionString(storageConnectionString)
+	             .shareName(shareName)
+	             .resourcePath(dirName)
+	             .buildDirectoryClient();
+
+        ShareFileClient fileClient = dirClient.getFileClient(fileName);
+        fileClient.download(stream);
 	}
 	
 	

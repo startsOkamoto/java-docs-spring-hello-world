@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -181,6 +182,35 @@ public class IndexController {
 			stream.write(writeStream.toByteArray());
 			// AzureUpload
 			CommonUtil.azureFilesUplad(writeStream, fileName, indexForm.getAccountName(), indexForm.getAccountKey(), indexForm.getShareName());
+	    }
+	}
+	
+
+	/***
+	 * EXCELファイルダウンロード（テンプレートファイルからの生成）
+	 * @param indexForm
+	 * @param model
+	 * @return
+	 * @throws IOException 
+	 */
+	@PostMapping(value="/", params = "DownloadFile", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public void downloadAzureFiles(IndexForm indexForm, HttpServletResponse response) throws IOException {
+		//HTTPヘッダに、ダウンロードファイル名を設定
+		//URLEncoder.encode(dlFileName,CHARSET_UTF8)
+		String encodeFileName = URLEncoder.encode(indexForm.getFileName(), "UTF-8");
+	    response.addHeader("Content-Disposition", "attachment; filename=\"" + encodeFileName + "\"");
+	    
+	    //Excelファイルの作成と、レスポンスストリームへの書き込み
+	    try (ServletOutputStream stream = response.getOutputStream();) {
+
+			// AzureUpload
+			CommonUtil.azureFilesDownload(
+					stream,
+					indexForm.getFolderName(), 
+					indexForm.getFileName(), 
+					indexForm.getAccountName(), 
+					indexForm.getAccountKey(), 
+					indexForm.getShareName());
 	    }
 	}
 	
