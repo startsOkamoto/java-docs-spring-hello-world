@@ -1,31 +1,22 @@
 package com.example.demo.forms;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+@Data
 public class IndexForm {
-	@Getter
-	@Setter
 	private String sendValue;
 	
-
-	@Getter
-	@Setter
 	private String accountName;
 	
-	@Getter
-	@Setter
 	private String accountKey;
 	
-	@Getter
-	@Setter
 	private String shareName;
 	
-	@Getter
-	@Setter
 	private String folderName;
 	
-	@Getter
-	@Setter
 	private String fileName;
+	
+	private String restResult;
+	
+	private String restUrl;
 }

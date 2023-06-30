@@ -93,6 +93,36 @@
 				</tr>
 			</table>
 		</div>
+		<div>
+			<hr />
+		</div>
+		<div>
+			<h2>Java Rest通信確認</h2>
+			<table>
+				<tr>
+					<th>
+						URL：
+					</th>
+					<td>
+						<input type="text" th:field="*{restUrl}" style="width: 80vw;" />
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="submit" value="Rest Connect" name="RestConnect" />
+						<input type="submit" value="Rest Download" name="RestDownload" />
+					</td>
+				</tr>
+				<tr>
+					<th>
+						RESULT STATUS：
+					</th>
+					<td>
+						<input type="text" th:field="*{restResult}" style="width: 80vw;" />
+					</td>
+				</tr>
+			</table>
+		</div>
 	</form>
 </body>
 </html>

@@ -22,12 +22,15 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.common.CommonUtil;
 import com.example.demo.forms.IndexForm;
@@ -211,6 +214,45 @@ public class IndexController {
 					indexForm.getAccountName(), 
 					indexForm.getAccountKey(), 
 					indexForm.getShareName());
+	    }
+	}
+	
+	
+	/**
+	 * REST 接続確認
+	 * @param indexForm
+	 * @param model
+	 * @return
+	 * @throws IOException
+	 */
+	@PostMapping(value="/", params = "RestConnect")
+	public String restConnect(IndexForm indexForm, Model model) throws IOException {
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<byte[]> responseRest = restTemplate.exchange(indexForm.getRestUrl(), HttpMethod.GET, null, byte[].class);
+		
+		indexForm.setRestResult(responseRest.getStatusCode().toString());
+		
+		model.addAttribute("indexForm", indexForm);
+		return "index2";
+	}
+	
+	/**
+	 * RESTからファイルダウンロードするときの確認
+	 * @param indexForm
+	 * @param response
+	 * @throws IOException
+	 */
+	@PostMapping(value="/", params = "RestDownload", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public void restDownload(IndexForm indexForm, HttpServletResponse response) throws IOException {
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<byte[]> responseRest = restTemplate.exchange(indexForm.getRestUrl(), HttpMethod.GET, null, byte[].class);
+		
+		String baseFileName = responseRest.getHeaders().get("Content-Disposition").get(0).replaceAll("\"", "").replaceAll("attachment; filename=", "");
+		String encodeFileName = URLEncoder.encode(baseFileName, "UTF-8");
+	    response.addHeader("Content-Disposition", "attachment; filename=\"" + encodeFileName + "\"");
+
+	    try (ServletOutputStream stream = response.getOutputStream();) {
+			response.getOutputStream().write(responseRest.getBody());
 	    }
 	}
 	
